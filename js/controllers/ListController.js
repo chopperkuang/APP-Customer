@@ -1,5 +1,6 @@
 'use strict';
 
-customerApp.controller('ListController', function ListController($scope, $http) {
+app.controller('ListController', function ListController($scope, $http, CONF) {
     $scope.title = "test";
+    $scope.host = CONF.host;
 });

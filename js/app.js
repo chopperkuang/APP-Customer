@@ -7,9 +7,9 @@
 
 'use strict';
 
-var customerApp = angular.module('customerApp', []);
+var app = angular.module('customerApp', []);
 
-customerApp.config(function($routeProvider) {
+app.config(function($routeProvider) {
     $routeProvider.
         when('/list', {
             controller: 'ListController',
