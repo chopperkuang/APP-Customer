@@ -1,7 +1,22 @@
 /**
- * Created with JetBrains WebStorm.
+ * 配置路由
  * User: kuang
  * Date: 13-2-25
  * Time: 下午6:13
- * To change this template use File | Settings | File Templates.
  */
+
+'use strict';
+
+var customerApp = angular.module('customerApp', []);
+
+customerApp.config(function($routeProvider) {
+    $routeProvider.
+        when('/list', {
+            controller: 'ListController',
+            templateUrl: 'views/list.html'
+        }).
+        otherwise({
+            redirectTo: '/list'
+        });
+});
+
