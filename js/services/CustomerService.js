@@ -10,6 +10,11 @@
 app.service('CustomerService', function CustomerService($http, CONF) {
     var self = this;
 
+    /**
+     * 查询我的私客
+     * @param empNo
+     * @return {*}
+     */
     self.privateList = function(empNo) {
         var myPrivateApi = CONF.host + "/api/app/myPrivate/"+ empNo +"?callback=JSON_CALLBACK";
         return $http.jsonp(myPrivateApi).then(
