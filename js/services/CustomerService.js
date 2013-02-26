@@ -21,7 +21,7 @@ app.service('CustomerService', function CustomerService($http, CONF) {
             function(response) { //success
                 return response.data.inquiryList;
             },
-            function(response) {
+            function(response) { //error
                 console.log("error.");
             }
         );
