@@ -10,6 +10,6 @@
 
 app.factory('CONF', function(){
     return {
-        host: 'http://10.8.11.34'
+        host: 'http://10.8.11.34:8090'
     };
 });

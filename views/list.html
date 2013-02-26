@@ -1,2 +1,7 @@
 <h1>{{title}}</h1>
 <h2>{{host}}</h2>
+
+<li class="clearfix" ng-repeat="customer in customers">
+    <span class="itemName">{{ customer.custName }}</span>
+    <span class="summary">{{ customer.districtName}}，{{ customer.countF + "房" + customer.countT + "厅" + customer.countW  + "卫" }}</span>
+</li>
