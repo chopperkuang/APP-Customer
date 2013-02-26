@@ -15,6 +15,10 @@ app.config(function($routeProvider) {
             controller: 'ListController',
             templateUrl: 'views/list.html'
         }).
+        when('/login', {
+            controller: 'LoginController',
+            templateUrl: 'views/login.html'
+        }).
         otherwise({
             redirectTo: '/list'
         });
