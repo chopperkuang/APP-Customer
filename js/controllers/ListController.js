@@ -29,7 +29,7 @@ app.controller('ListController', function ListController($scope, $http, Customer
 
     // to show the popup window of selecting phone number
     $scope.callSelect = function(type){
-        this.call_type = type;
+        this.callType = type;
         this.popupShow = 'hidden';
         this.popupSelectShow = '';
     };
