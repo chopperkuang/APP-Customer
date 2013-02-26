@@ -21,13 +21,13 @@
 
                 <section class="listWrap">
                     <ul class="main_list">
-                        <li class="clearfix" ng-repeat="customer in customerList" ng-click="call()">
+                        <li class="clearfix" ng-repeat="customer in customerList | orderBy:predicate" ng-click="call()">
                             <div class="summary">
                                 <p class="custName">{{customer.custName}}</p>
 
-                                <p class="custNeed">{{customer.districtName}}<br/>800-1000万 3室2厅2卫</p>
+                                <p class="custNeed">{{customer.districtName}}<br/>800-1000万 {{ customer | formatRoom}}</p>
                             </div>
-                            <div class="lastCall">14:51</div>
+                            <div class="lastCall">{{customer.trustDate | formatDate: 'YYYY/MM/DD HH:mm:ss'}}</div>
                         </li>
                     </ul>
                 </section>

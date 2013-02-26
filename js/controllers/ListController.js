@@ -10,10 +10,13 @@ app.controller('ListController', function ListController($scope, $http, Customer
     $scope.iframeShow = 'hidden';
     $scope.sidebarShow = '';
 
+    $scope.predicate = 'trustDate';
+    $scope.dateISO = '2012-11-04T18:53:04.0000000Z';
+    $scope.dateJson = '1352055184000';
+
     CustomerService.privateList(83639).then(function(data){
         $scope.customerList = data;
     });
-
 
     // to show the popup window of calling
     $scope.call = function(num) {

@@ -2,6 +2,7 @@
 <html ng-app="customerApp">
 <head>
     <title>Customer APP</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/main_demo.css" />
@@ -12,10 +13,18 @@
 
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
+    <script src="components/moment/moment.js"></script>
+
+    <!--start application-->
     <script src="js/app.js"></script>
     <script src="js/commons/CONF.js"></script>
+
     <script src="js/controllers/ListController.js"></script>
     <script src="js/services/CustomerService.js"></script>
+
+    <!--start filter-->
+    <script src="js/filters/format.js"></script>
+
     <script src="js/cordova-2.3.0.js"></script>
 
 </body>

@@ -7,7 +7,7 @@
 
 'use strict';
 
-var app = angular.module('customerApp', ['ngResource']);
+var app = angular.module('customerApp', ['ngResource', 'dy.format']);
 
 app.config(function($routeProvider) {
     $routeProvider.
