@@ -31,38 +31,41 @@
                         </li>
                     </ul>
                 </section>
-                <!--section class="popup_bottom {{popupShow}}">
+
+
+                <!-- begin opration -->
+
+                <!-- single phone -->
+                <section class="popup_bottom {{popupCallShow}}">
                     <section class="align_center">
-                        <p><a href="tel:13917062966" class="btn_oper in_block">打电话</a></p>
-                        <p class="mt_10"><a href="sms:13917062966@dd.cc" class="btn_oper in_block">发短信</a></p>
+                        <p><a href="tel:13917062966" class="btn_oper in_block" ng-click="updateLastCall('tel')">打电话</a></p>
+                        <p class="mt_10"><a href="sms:13917062966" class="btn_oper in_block">发短信</a></p>
                         <p class="mt_10"><input type="button" class="btn_oper" value="取消" ng-click="callCancel()" /></p>
                     </section>   
-                </section-->
-                <section class="popup_bottom {{popupShow}}">
-                    <section class="align_center">
-                        <p><input type="button" class="btn_oper" value="打电话" ng-click="callSelect('tel')"/></p>
-
-                        <p class="mt_10"><input type="button" class="btn_oper" value="发短信"
-                                                ng-click="callSelect('sms')"/></p>
-
-                        <p class="mt_10"><input type="button" class="btn_oper" value="取消" ng-click="callCancel()"/></p>
-                    </section>
                 </section>
 
-                <call ng-model="phones"></call>
-
-                <section class="popup_bottom {{popupSelectShow}}">
+                <!-- multiple phones -->
+                <section class="popup_bottom {{popupCallMultiShow}}">
                     <section class="align_center">
-                        <p><a href="{{call_type}}:13917062966">王先生：13917062966</a></p>
-
-                        <p class="mt_10"><a href="{{callType}}:021-65989743">王先生：021-65989743</a></p>
-
-                        <p class="mt_10"><a href="{{callType}}:13300009999">小王先生(儿子)：13300009999</a></p>
-
-                        <p class="mt_10"><input type="button" class="btn_oper" value="取消" ng-click="selectCancel()"/>
-                        </p>
-                    </section>
+                        <p><input type="button" class="btn_oper" value="打电话" ng-click="callSelect('tel')" /></p>
+                        <p class="mt_10"><input type="button" class="btn_oper" value="发短信" ng-click="callSelect('sms')" /></p>
+                        <p class="mt_10"><input type="button" class="btn_oper" value="取消" ng-click="callCancel()" /></p>
+                    </section>   
                 </section>
+                <section class="popup_bottom align_center {{popupSelectShow}}">
+                    <section class="popup_inner m_auto_h">
+                        <p>{{operType + "给："}}</p>
+                        <div class="mt_10" ng-repeat="contact in contacts">
+                            <p>{{contact.contactName}}：</p>
+                            <p ng-repeat="phone in contact.phoneList">
+                                <a href="{{callType}}:{{phone.phoneNumber}}" class="btn_oper in_block mt_5" ng-click="updateLastCall(callType)">{{phone.phoneNumber}}</a>
+                            </p>
+                        </div>
+                    </section>
+                     <p class="mt_10 align_center"><input type="button" class="btn_oper" value="取消" ng-click="selectCancel()" /></p>   
+                </section>
+
+                <!-- mask -->
                 <iframe id="mask" class="{{iframeShow}}"></iframe>
             </div>
         </div>

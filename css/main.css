@@ -118,12 +118,12 @@ ul.main_list li .lastCall {width:50px; padding-top:25px; font-size:14px; text-al
 
 
 .popup_bottom {width:320px; padding:20px 0; position:absolute; z-index:100; bottom:0; left:0; background:#fff;}
-
+.popup_inner{width:250px; text-align:left;}
 #mask {width:320px; height:460px; background:#333; opacity:0.5; z-index:99; position:absolute; top:0; left:0}
 
-.btn_oper, a.btn_oper, a.btn_oper:hover {
-    width:250px; height:30px; line-height:30px; background:#eee; color:#333; border:1px solid #ddd; text-decoration:none
-}
+.btn_oper, a.btn_oper, a.btn_oper:hover {width:250px; height:30px; line-height:30px; background:#eee; color:#333; border:1px solid #ddd; text-decoration:none; text-align:center}
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -250,6 +250,9 @@ textarea[contenteditable] {
 .mt_10 {margin-top:10px;}
 .m_10 {margin:10px;}
 .m_auto_h {margin-left:auto; margin-right:auto}
+.ml_20 {margin-left:20px;}
+
+.pl_20 {padding-left:20px;}
 
 
 /* text-aligment */
