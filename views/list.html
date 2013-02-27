@@ -27,7 +27,7 @@
 
                                 <p class="custNeed">{{customer.districtName}}<br/>800-1000万 {{ customer | formatRoom}}</p>
                             </div>
-                            <div class="lastCall">{{customer.trustDate | formatDate: 'YYYY/MM/DD HH:mm:ss'}}</div>
+                            <div class="lastCall">{{customer.lastFollowDate | fromNow: 'YYYY/MM/DD HH:mm:ss'}}</div>
                         </li>
                     </ul>
                 </section>

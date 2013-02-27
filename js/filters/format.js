@@ -30,8 +30,18 @@ filter.filter('formatRoom', function(){
 /**
  * 格式化时间
  */
-filter.filter('formatDate', function(){
+filter.filter('fromNow', function(){
     return function(dateString, format) {
-        return moment(dateString).format(format);
+        if(dateString == undefined) {
+            return moment().format('MM/dd');
+        }
+
+        var beforeDate = moment(dateString).format(format);
+        var nowDate = moment();
+
+        if(nowDate.diff(beforeDate, 'days') > 1) {
+            return moment(dateString).fromNow();
+        }
+        return moment(dateString).format('HH:mm');
     };
 });
