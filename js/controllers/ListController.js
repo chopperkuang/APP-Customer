@@ -3,7 +3,13 @@
  * 客户列表展示
  * User: kuang
  */
+<<<<<<< HEAD
 app.controller('ListController', function ListController($scope, $http, $location, CustomerService) {
+=======
+
+app.controller('ListController', function ListController($scope, $http, CustomerService, notification) {
+    
+>>>>>>> 解决了unsafe:tel:xxxx不安全访问的问题(列入白名单)；解决angularjs调用phonegap接口的问题(引入ready.js)
     // operation popup init
     $scope.popupCallShow = 'hidden';
     $scope.popupCallMultiShow = 'hidden';
@@ -26,7 +32,6 @@ app.controller('ListController', function ListController($scope, $http, $locatio
 
     // to show the popup window of calling
     $scope.call = function() { 
-       
         $scope.contacts = [
                 {
                     contactName:"张先生",
@@ -135,8 +140,6 @@ app.controller('ListController', function ListController($scope, $http, $locatio
             $scope.popupCallMultiShow = '';
         }
         $scope.iframeShow = '';
-        
-        
     };
 
     // to hide the popup window of calling
@@ -182,8 +185,16 @@ app.controller('ListController', function ListController($scope, $http, $locatio
     // get the time of last calling
     $scope.updateLastCall = function(type){
         if(type == 'tel'){
-            alert('last time of calling is:' + new Date());
+            //$scope.myAlert('last time of calling is:' + new Date());
+            console.log('last time of calling is:' + new Date());
         }
     } 
-
+    /*$scope.myAlert = function(m){
+        if(navigator.notification){
+            notification.alert("", null, m);
+        }
+        else{
+            alert(m);
+        } 
+    }*/
 });
