@@ -3,7 +3,7 @@
  * 客户列表展示
  * User: kuang
  */
-app.controller('ListController', function ListController($scope, $http, CustomerService) {
+app.controller('ListController', function ListController($scope, $http, $location, CustomerService) {
     // operation popup init
     $scope.popupCallShow = 'hidden';
     $scope.popupCallMultiShow = 'hidden';
@@ -16,6 +16,13 @@ app.controller('ListController', function ListController($scope, $http, Customer
     CustomerService.privateList(83639).then(function(data){
         $scope.customerList = data;
     });
+
+    /**
+     * 刷新列表，更新的数据
+     */
+    $scope.refresh = function() {
+        $location.url("/list");
+    };
 
     // to show the popup window of calling
     $scope.call = function() { 
