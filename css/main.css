@@ -84,10 +84,10 @@ body {background:#A00;}
 /* view - login */
 .page_login {width:320px; height:460px; background:#fff; text-align:center; margin:0; padding:0;}
 .login_title{font-size:20px; padding-top:100px;}
-.login_wrap {width:300px; padding:0 10px;}
+.login_wrap {width:250px; margin:0 auto;}
 .login_text {width:248px; height:30px; line-height:30px; border:1px solid #ddd; font-size:18px;}
 a.btn_login, a.btn_login:hover {width:298px; height:30px; font-size:18px; border:1px solid #333; background:#fff; color:#333; border-radius:6px; text-decoration:none;}
-
+.login_errMsg {text-align:left; color:#A00; font-size:12px; margin-top:3px;}
 /* sidebar */
 .sidebar {width:320px; background:#eee; height:460px; overflow-y:scroll; -webkit-overflow-scrolling:touch}
 .sidebar ul.sidebar_list {}

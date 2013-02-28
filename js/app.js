@@ -7,8 +7,8 @@
 
 'use strict';
 
-var app = angular.module('customerApp', ['ngResource', 'dy.format', 'btford.phonegap.notification']);
-
+var app = angular.module('customerApp', ['ngResource', 'dy.format', 'phonegap.notification']);
+//window.sessionStorage.clear();
 app.config(function($routeProvider) {
     $routeProvider.
         when('/list', {
@@ -25,7 +25,9 @@ app.config(function($routeProvider) {
 });
 
 
-// white list - to fixed the question as unsafe:tel:...
+/**
+ * url白名单设置
+ */
 app.config(function($compileProvider){
     $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel|sms):/);
 });

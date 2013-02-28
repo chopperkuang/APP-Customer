@@ -5,28 +5,35 @@
  */
 
 app.controller('ListController', function ListController($scope, $http, $location, CustomerService, notification) {
+    if(!window.sessionStorage.getItem('lastSign')){
+         $location.url('/login');
+    }
+    else{
 
-    // operation popup init
-    $scope.popupCallShow = 'hidden';
-    $scope.popupCallMultiShow = 'hidden';
-    $scope.popupSelectShow = 'hidden';
-    $scope.iframeShow = 'hidden';
-    $scope.sidebarShow = '';
+        // operation popup init
+        $scope.popupCallShow = 'hidden';
+        $scope.popupCallMultiShow = 'hidden';
+        $scope.popupSelectShow = 'hidden';
+        $scope.iframeShow = 'hidden';
+        $scope.sidebarShow = '';
 
-    $scope.predicate = '-lastFollowDate';
+        $scope.predicate = '-lastFollowDate';
 
-    CustomerService.privateList(83639).then(function(data){
-        $scope.customerList = data;
-    });
+        CustomerService.privateList(83639).then(function(data){
+            $scope.customerList = data;
+        });
+    }
 
     /**
      * 刷新列表，更新的数据
      */
-    $scope.refresh = function() {
+    $scope.refresh = function(){
         $location.url("/list");
     };
 
-    // to show the popup window of calling
+    /**
+     * 打电话，发短信等操作
+     */
     $scope.call = function() { 
         $scope.contacts = [
                 {
@@ -138,7 +145,9 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         $scope.iframeShow = '';
     };
 
-    // to hide the popup window of calling
+    /**
+     * 取消打电话、发短信操作
+     */
     $scope.callCancel = function(){
         if($scope.popupCallShow == ''){ // single number
             $scope.popupCallShow = 'hidden';
@@ -149,7 +158,9 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         $scope.iframeShow = 'hidden';
     };
 
-    // to show the popup window of selecting phone number
+    /**
+     * 选择电话号码
+     */
     $scope.callSelect = function(type){
         $scope.callType = type;
         if(type == 'tel'){
@@ -162,13 +173,17 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         $scope.popupSelectShow = '';
     };
 
-    // to hide the popup window of selecting phone number
+    /**
+     * 取消选择电话号码
+     */
     $scope.selectCancel = function(){
         $scope.popupSelectShow = 'hidden';
         $scope.iframeShow = 'hidden';
     };
 
-    // to show or hide sidebar
+    /**
+     * 展开、收缩侧边栏
+     */
     $scope.sidebarSwitch = function(){
         if($scope.sidebarShow == ''){
             $scope.sidebarShow = 'sidebar_show';
@@ -178,19 +193,21 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         }
     };
 
-    // get the time of last calling
+    /**
+     * 更新最近拨打时间
+     */
     $scope.updateLastCall = function(type){
         if(type == 'tel'){
-            //$scope.myAlert('last time of calling is:' + new Date());
+            //alert('last time of calling is:' + new Date());
             console.log('last time of calling is:' + new Date());
         }
-    } 
-    /*$scope.myAlert = function(m){
-        if(navigator.notification){
-            notification.alert("", null, m);
-        }
-        else{
-            alert(m);
-        } 
-    }*/
+    };
+
+    /**
+     * 注销
+     */
+    $scope.signOut = function(){
+        window.sessionStorage.removeItem('lastSign');
+        $location.url('/login');
+    }
 });
