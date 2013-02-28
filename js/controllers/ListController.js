@@ -3,13 +3,9 @@
  * 客户列表展示
  * User: kuang
  */
-<<<<<<< HEAD
-app.controller('ListController', function ListController($scope, $http, $location, CustomerService) {
-=======
 
-app.controller('ListController', function ListController($scope, $http, CustomerService, notification) {
-    
->>>>>>> 解决了unsafe:tel:xxxx不安全访问的问题(列入白名单)；解决angularjs调用phonegap接口的问题(引入ready.js)
+app.controller('ListController', function ListController($scope, $http, $location, CustomerService, notification) {
+
     // operation popup init
     $scope.popupCallShow = 'hidden';
     $scope.popupCallMultiShow = 'hidden';
