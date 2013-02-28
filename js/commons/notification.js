@@ -6,8 +6,8 @@
 
 'use strict';
 
-angular.module('btford.phonegap.notification',
-  ['btford.phonegap.ready']).
+angular.module('phonegap.notification',
+  ['phonegap.ready']).
   factory('notification', function ($rootScope, phonegapReady) {
     return {
       alert: phonegapReady(function (message, alertCallback, title, buttonName) {

@@ -6,7 +6,7 @@
 
 'use strict';
 
-angular.module('btford.phonegap.ready', []).
+angular.module('phonegap.ready', []).
   factory('phonegapReady', function ($rootScope) {
     return function (fn) {
       var queue = [];
