@@ -12,16 +12,14 @@
         <div class="pageWrap">
             <div class="page">
                 <header class="header clearfix">
-                    <div class="btn_header"><input type="button" class="btn_nav" value="N" ng-click="sidebarSwitch()"/>
-                    </div>
+                    <div class="btn_header btn_nav" ng-click="sidebarSwitch()"></div>
                     <div class="pageTitle">我的客户</div>
-                    <div class="btn_header"><input type="button" class="btn_update" value="U" ng-click="refresh()"/>
-                    </div>
+                    <div class="btn_header btn_update" ng-click="refresh()"></div>
                 </header>
 
                 <section class="listWrap">
-                    <ul class="main_list">
-                        <li class="clearfix" ng-repeat="customer in customerList | orderBy:predicate" ng-click="call()">
+                    <ul class="main_list {{listShow}}">
+                        <li class="clearfix" ng-repeat="customer in customerList | orderBy:predicate" ng-click="call(customer.inquiryId)" id="{{customer.inquiryId}}">
                             <div class="summary">
                                 <p class="custName">{{customer.custName}}</p>
 
@@ -30,6 +28,7 @@
                             <div class="lastCall">{{customer.lastFollowDate | fromNow: 'YYYY/MM/DD HH:mm:ss'}}</div>
                         </li>
                     </ul>
+                    <p class="noRecord {{noRecordShow}}">暂无客户。</p>
                 </section>
 
 
@@ -38,8 +37,8 @@
                 <!-- single phone -->
                 <section class="popup_bottom {{popupCallShow}}">
                     <section class="align_center">
-                        <p><a href="tel:13917062966" class="btn_oper in_block" ng-click="updateLastCall('tel')">打电话</a></p>
-                        <p class="mt_10"><a href="sms:13917062966" class="btn_oper in_block">发短信</a></p>
+                        <p><a href="tel:{{phoneNumber}}" class="btn_oper in_block" ng-click="updateLastCall('tel')">打电话</a></p>
+                        <p class="mt_10"><a href="sms:{{phoneNumber}}" class="btn_oper in_block">发短信</a></p>
                         <p class="mt_10"><input type="button" class="btn_oper" value="取消" ng-click="callCancel()" /></p>
                     </section>   
                 </section>

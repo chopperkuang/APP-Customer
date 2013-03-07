@@ -8,7 +8,6 @@
 'use strict';
 
 var app = angular.module('customerApp', ['ngResource', 'dy.format', 'phonegap.notification']);
-//window.sessionStorage.clear();
 app.config(function($routeProvider) {
     $routeProvider.
         when('/list', {
@@ -23,7 +22,6 @@ app.config(function($routeProvider) {
             redirectTo: '/list'
         });
 });
-
 
 /**
  * url白名单设置

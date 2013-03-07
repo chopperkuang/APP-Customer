@@ -1,16 +1,10 @@
-<section class="page_login">
-    <p class="login_title">客户通讯录</p>
+<section class="page_login {{show1}}">
+    <div class="logo"></div>
     <section class="login_wrap mt_10">
-        <form name="loginForm">
-            <p><input type="text" ng-model="uname" name="username" value="" class="login_text" placeholder="工号" /></p>
-            <!--div ng-show="loginForm.username.$dirty && loginForm.username.$invalid" class="login_errMsg">
-        		<span ng-show="loginForm.username.$error.required">请输入工号</span>
-        	</div-->
-            <p class="mt_5"><input type="password" ng-model="pass" name="password" value="" class="login_text" placeholder="密码" /></p>
-            <!--div ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="login_errMsg">
-        		<span ng-show="loginForm.password.$error.required">请输入密码</span>
-        	</div-->
-            <p class="mt_5"><input type="button" class="btn_oper" value="登录" ng-click="login()" /></p>
+        <form name="loginForm" novalidate>
+            <p><input type="text" ng-model="employee.id" value="" class="login_text login_text_id" placeholder="工号" /></p>
+            <p><input type="password" ng-model="employee.password" value="" class="login_text login_text_password" placeholder="密码" /></p>
+            <p><input type="button" class="btn_login" value="登录" ng-click="login(employee)" /></p>
         </form>
     </section>
 </section>

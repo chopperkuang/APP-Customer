@@ -25,22 +25,19 @@ app.service('CustomerService', function CustomerService($http, CONF) {
                 console.log("error.");
             }
         );
-    }
+    };
 
-    /**
-     * 用户登录
-     * @param empNo, empPassword
-     * @return {*}
-     */
-    self.userLogin = function(empNo, empPassword) {
-        var loginApi = 'http://10.8.11.34:8090/api/app/login/' + empNo + '/' + empPassword + '?callback=JSON_CALLBACK';
-        return $http.jsonp(loginApi).then(
+    self.customerPhones = function(inquiryId) {
+        var customerPhonesApi = CONF.host + "/api/app/" + inquiryId + "/phone?callback=JSON_CALLBACK";
+        return $http.jsonp(customerPhonesApi).then(
             function(response) { //success
-                return response.data;
+                return response.data.contactList;
             },
             function(response) { //error
-                alert("登录请求失败，请重试");
+                console.log("error.");
             }
         );
     }
+
+    
 });

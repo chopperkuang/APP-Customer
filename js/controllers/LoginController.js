@@ -4,21 +4,41 @@
  * User: liao
  */
 
-app.controller('LoginController', function LoginController($scope, $http, $location, CustomerService, notification){
-    $scope.uname = '83124';
-    $scope.pass = 'lq546';
-    
+app.controller('LoginController', function LoginController($scope, $http, $route, $location, EmployeeService, notification, Employee){
+    $scope.employee = {};
+    alert($route.current.controller);
+    alert($route.current.templateUrl);
+    var x = $route.current.locals;
+    angular.forEach(x, function(key,value){
+        console.log(key+":"+value);
+    });
+
+
     /**
      * 用户登录
      */
-    $scope.login = function(){
-        CustomerService.userLogin($scope.uname, $scope.pass).then(function(data){
+    $scope.login = function(employee){
+        if(!employee.id){
+            alert('请输入工号');
+            return false;
+        }
+        if(!employee.password){
+           alert('请输入密码');
+            return false;
+        }
+
+        EmployeeService.userLogin(employee.id, employee.password).then(function(data){
             if(data.status == 'ok'){
-                window.sessionStorage.setItem('lastSign', new Date());
+                //Employee = data;
+                angular.forEach(data, function(value, key){
+                    this[key] = value; //this指代Employee
+                }, Employee);
+                window.sessionStorage.lastSign = new Date();
+
                 $location.url('/list');
             }
             else{
-                alert('用户名或密码错，请重试');
+                alert('工号或密码错，请重试');
             }
         });
     };

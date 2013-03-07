@@ -79,19 +79,28 @@ p {padding:0; margin:0}
    Author's custom styles
    ========================================================================== */
 
-body {background:#A00;}
+body {background:#f2f1e8; width:320px; font-family: "Heiti SC Medium";}
+
+.grey888 {color:#888;}
 
 /* view - login */
-.page_login {width:320px; height:460px; background:#fff; text-align:center; margin:0; padding:0;}
-.login_title{font-size:20px; padding-top:100px;}
-.login_wrap {width:250px; margin:0 auto;}
-.login_text {width:248px; height:30px; line-height:30px; border:1px solid #ddd; font-size:18px;}
-a.btn_login, a.btn_login:hover {width:298px; height:30px; font-size:18px; border:1px solid #333; background:#fff; color:#333; border-radius:6px; text-decoration:none;}
-.login_errMsg {text-align:left; color:#A00; font-size:12px; margin-top:3px;}
+.page_login {width:320px; height:410px; padding-top:50px; overflow-y:hidden; background:#ab1f1f; text-align:center; margin:0}
+.logo {width:164px;height:79px;background:url(../img/logo.png) no-repeat left top;background-size:164px;margin:0 auto}
+.login_wrap {width:250px;margin:30px auto 0;text-align:left}
+
+.login_text {font-size:22px;width:230px;height:44px;line-height:44px;border:1px solid #6e1515;padding:0 10px;box-shadow:1px 1px 2px #ddd inset;-webkit-border-radius:10px;}
+.login_text:focus {outline:0;}
+.login_text_id {border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom:1px solid #ccc;}
+.login_text_password {border-top-left-radius:0;border-top-right-radius:0;border-top:0;}
+/*a.btn_login, a.btn_login:hover {width:298px; height:30px; font-size:18px; border:1px solid #333; background:#fff; color:#333; border-radius:6px; text-decoration:none;}*/
+.btn_login {width:250px;height:44px;line-height:44px;font-size:22px;color:#fff;font-weight:bold;border:none;background:url(../img/btn_login.png) no-repeat left top;background-size:250px;-webkit-border-radius:10px;margin-top:8px;box-shadow:1px 2px 3px #4b0c0c;text-shadow:-1px -1px 1px #282828;text-align: center}
+.btn_login_hover {background:#454443;}
+
+
 /* sidebar */
-.sidebar {width:320px; background:#eee; height:460px; overflow-y:scroll; -webkit-overflow-scrolling:touch}
+.sidebar {width:320px; background:#444; height:460px; color:#f5f5f5; overflow-y:scroll; -webkit-overflow-scrolling:touch}
 .sidebar ul.sidebar_list {}
-.sidebar ul.sidebar_list li {height:40px; line-height:40px; border-bottom:1px solid #ccc; padding:0 16px}
+.sidebar ul.sidebar_list li {height:40px; line-height:40px; border-bottom:1px solid #333; padding:0 16px}
 .sidebar ul.sidebar_list li a {width:100%; height:40px; line-height:40px; color:#000; text-decoration:none;}
 
 /* view - list */
@@ -102,26 +111,32 @@ a.btn_login, a.btn_login:hover {width:298px; height:30px; font-size:18px; border
 .page {widht:320px; height:460px; float:left;}
 
 
-.header {width:320px;height:44px;background:#666}
-.header .pageTitle {width:210px; height:44px; line-height:44px; font-size:20px; color:#fff; text-align:center; float:left;font-weight:bold;font-family:"Heiti SC Medium"; text-shadow:-1px -1px 1px rgba(0,0,0,0.4)}
-.header .btn_header {width:55px; height:44px; overflow:hidden; background:#ccc; float:left}
-.header .btn_nav {}
-.header .btn_upadate {}
+.header {width:320px;height:44px;background:url(../img/icons.png) no-repeat left top;background-size:320px;}
+.header .pageTitle {width:200px;height:44px;line-height:44px;font-size:22px;color:#fff;text-align:center;float:left;font-weight:bold;font-family:"Heiti SC Medium";text-shadow:-1px -1px 1px rgba(0,0,0,0.4);}
+.header .btn_header {width:55px; height:44px;line-height:44px;overflow:hidden;background:url(../img/icons.png) no-repeat 0 -44px;float:left;background-size:320px;}
+.header .btn_nav {background-position:0 -44px;}
+.header .btn_update {background-position:-110px -44px;float:right;}
 
 .listWrap {width:320px; height:416px; overflow-y:scroll; -webkit-overflow-scrolling:touch;}
-ul.main_list {}
-ul.main_list li{padding:5px; border-bottom:1px solid #ddd}
-ul.main_list li .summary {width:240px; float:left}
+ul.main_list {width:298px;border:1px solid #c5c4c3;-webkit-border-radius:10px;box-shadow:1px 1px 2px rgba(0,0,0,0.12);margin:10px auto;}
+ul.main_list li{font-size:18px;text-align:left;border-bottom:1px solid #ddd;background:#fff url(../img/bg_list.png) no-repeat 280px 16px;background-size:10px;padding:5px}
+ul.main_list li:first-child{-webkit-border-top-left-radius:10px;-webkit-border-top-right-radius:10px}
+ul.main_list li:last-child{border-bottom:none;-webkit-border-bottom-left-radius:10px;-webkit-border-bottom-right-radius:10px}
+ul.main_list li .summary {width:218px; float:left}
 ul.main_list li .summary .custName{font-size:18px}
 ul.main_list li .summary .custNeed{font-size:12px; color:#999}
 ul.main_list li .lastCall {width:50px; padding-top:25px; font-size:14px; text-align:right; float:right}
+ul.main_list li:last-child .summary {-webkit-border-bottom-left-radius:10px}
+ul.main_list li:last-child .lastCall {-webkit-border-bottom-right-radius:10px}
 
+.noRecord {text-align:center;color:#888;padding:20px 0}
 
 .popup_bottom {width:320px; padding:20px 0; position:absolute; z-index:100; bottom:0; left:0; background:#fff;}
 .popup_inner{width:250px; text-align:left;}
 #mask {width:320px; height:460px; background:#333; opacity:0.5; z-index:99; position:absolute; top:0; left:0}
 
 .btn_oper, a.btn_oper, a.btn_oper:hover {width:250px; height:30px; line-height:30px; background:#eee; color:#333; border:1px solid #ddd; text-decoration:none; text-align:center}
+
 
 
 /* ==========================================================================
