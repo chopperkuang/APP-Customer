@@ -6,14 +6,7 @@
 
 app.controller('LoginController', function LoginController($scope, $http, $route, $location, EmployeeService, notification, Employee){
     $scope.employee = {};
-    alert($route.current.controller);
-    alert($route.current.templateUrl);
-    var x = $route.current.locals;
-    angular.forEach(x, function(key,value){
-        console.log(key+":"+value);
-    });
-
-
+    
     /**
      * 用户登录
      */
