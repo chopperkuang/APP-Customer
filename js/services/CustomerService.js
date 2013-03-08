@@ -7,7 +7,7 @@
 
 'use strict';
 
-app.service('CustomerService', function CustomerService($http, CONF) {
+app.service('CustomerService', function CustomerService($http, CONF, Employee) {
     var self = this;
 
     /**
@@ -15,9 +15,15 @@ app.service('CustomerService', function CustomerService($http, CONF) {
      * @param empNo
      * @return {*}
      */
-    self.privateList = function(empNo) {
-        var myPrivateApi = CONF.host + "/api/app/myPrivate/"+ empNo +"?callback=JSON_CALLBACK";
-        return $http.jsonp(myPrivateApi).then(
+    self.privateList = function() {
+
+        var config = {
+            params: {token:Employee.accessToken},
+            headers:{
+                'Authorization':'Bearer ' + Employee.accessToken
+            }
+        };
+        return $http.get(CONF.host + "?method=ky.private.list", config).then(
             function(response) { //success
                 return response.data.inquiryList;
             },
@@ -28,8 +34,13 @@ app.service('CustomerService', function CustomerService($http, CONF) {
     };
 
     self.customerPhones = function(inquiryId) {
-        var customerPhonesApi = CONF.host + "/api/app/" + inquiryId + "/phone?callback=JSON_CALLBACK";
-        return $http.jsonp(customerPhonesApi).then(
+        var config = {
+            params: {inquiryId:inquiryId},
+            headers:{
+                'Authorization':'Bearer ' + Employee.accessToken
+            }
+        };
+        return $http.get(CONF.host + "?method=ky.phone.list", config).then(
             function(response) { //success
                 return response.data.contactList;
             },
@@ -38,6 +49,4 @@ app.service('CustomerService', function CustomerService($http, CONF) {
             }
         );
     }
-
-    
 });

@@ -20,11 +20,13 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         $scope.iframeShow = 'hidden';
         //侧边栏
         $scope.sidebarShow = '';
+        //todo 这类对弹层的操作，可以由指令来完成(进行封装)，因此部分弹层是互斥的
+
 
 
         $scope.predicate = '-lastFollowDate';
         //获取客户列表
-        CustomerService.privateList(Employee.id).then(function(data){
+        CustomerService.privateList().then(function(data){
             $scope.customerList = data;
             if($scope.customerList.length == 0){//暂无客户
                 $scope.listShow = 'hidden';

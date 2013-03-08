@@ -10,6 +10,6 @@
 
 app.factory('CONF', function(){
     return {
-        host: 'http://10.8.11.34:8090'
+        host: 'http://api.dooioo.com:18080/route/rest'
     };
 });
