@@ -11,7 +11,6 @@ app.controller('ListController', function ListController($scope, $http, $locatio
     else {
         //显示|隐藏 状态初始化
         //客户列表
-        console.log("dddd");
         $scope.noRecordShow = 'hidden';
         $scope.listShow = 'hidden';
         //操作弹层初始化
@@ -49,6 +48,9 @@ app.controller('ListController', function ListController($scope, $http, $locatio
      * 打电话，发短信操作
      */
     $scope.call = function(inquiryId) { 
+        if($scope.sidebarShow != ''){
+            return false;
+        }
         CustomerService.customerPhones(inquiryId).then(function(data){
             console.log('contacts:'+JSON.stringify(data));
             $scope.contacts = data;
