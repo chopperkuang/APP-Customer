@@ -132,7 +132,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
     /**
      * 注销
      */
-    $scope.signOut = function(){
-        EmployeeService.userLogout();
+    $scope.logout = function(){
+        EmployeeService.logout();
     }
 });
