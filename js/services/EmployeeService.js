@@ -70,8 +70,8 @@ app.service('EmployeeService', function EmployeeService($http, $location, Employ
     }
 
     self.logout = function(){
-        Employee.id = undefined;
-//        Employee.accessToken = undefined; //todo 发送请求清除accessToken(暂无API)
+        window.sessionStorage.lastSign = undefined;
+        Employee.accessToken = undefined; //todo 发送请求清除accessToken(暂无API)
         $location.url('/login');
     };
 
