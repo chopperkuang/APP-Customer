@@ -56,7 +56,7 @@ img {border:0}
    Author's custom styles
    ========================================================================== */
 
-.container {width:320px; overflow-x:hidden; position:relative}
+.container {width:320px; height:460px; overflow-x:hidden; position:relative}
 
 /* view - login */
 .page_login {width:320px;height:410px;overflow-y:hidden;padding-top:50px;background:#ab1f1f;text-align:center;-webkit-transition: all 0.9s ease;-webkit-transform-style: preserve-3d;-webkit-transform-origin: left center;opacity:1;position:absolute;top:0;z-index:3;}
