@@ -5,6 +5,7 @@
  */
 
 app.controller('ListController', function ListController($scope, $http, $location, $route, CustomerService, EmployeeService, Employee, notification) {
+    console.log(Employee.accessToken + " => " + window.sessionStorage.lastSign);
     if(!Employee.accessToken || !window.sessionStorage.lastSign){
         $location.url('/login');
     }
