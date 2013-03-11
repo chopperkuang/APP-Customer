@@ -5,7 +5,7 @@
  */
 
 app.controller('ListController', function ListController($scope, $http, $location, $route, CustomerService, EmployeeService, Employee, notification) {
-    if(!Employee.id || !window.sessionStorage.lastSign){
+    if(!Employee.accessToken || !window.sessionStorage.lastSign){
         $location.url('/login');
     }
     else {
@@ -43,7 +43,23 @@ app.controller('ListController', function ListController($scope, $http, $locatio
      * 刷新列表，更新数据
      */
     $scope.refresh = function(){
-        $route.reload();
+        if(!Employee.accessToken || !window.sessionStorage.lastSign){
+            $location.url('/login');
+        }
+
+        $scope.predicate = '-lastFollowDate';
+        //获取客户列表
+        CustomerService.privateList().then(function(data){
+            $scope.customerList = data;
+            if($scope.customerList.length == 0){//暂无客户
+                $scope.listShow = 'hidden';
+                $scope.noRecordShow = '';
+            }
+            else {//有客户
+                $scope.noRecordShow = 'hidden';
+                $scope.listShow = '';
+            }
+        });
     };
 
     /**
