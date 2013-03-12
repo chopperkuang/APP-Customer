@@ -6,7 +6,7 @@
 
 app.controller('ListController', function ListController($scope, $http, $location, $route, CustomerService, EmployeeService, Employee, notification) {
     if(!Employee.accessToken || !window.sessionStorage.lastSign){
-        $location.url('/login');
+        $scope.$emit('event:loginRequired');
     }
     else {
         //显示|隐藏 状态初始化
@@ -44,7 +44,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
      */
     $scope.refresh = function(){
         if(!Employee.accessToken || !window.sessionStorage.lastSign){
-            $location.url('/login');
+            $scope.$emit('event:loginRequired');
         }
 
         $scope.predicate = '-lastFollowDate';
@@ -149,6 +149,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
      * 注销
      */
     $scope.logout = function(){
-        EmployeeService.logout();
+        $scope.$emit('event:logoutRequest');
+        $location.url("/login");
     }
 });

@@ -54,10 +54,7 @@ app.service('EmployeeService', function EmployeeService($http, $location, Employ
 
     self.getEmployee = function(empNo) {
         var config = {
-            params: {empNo:empNo},
-            headers:{
-                'Authorization':'Bearer ' + Employee.accessToken
-            }
+            params: {empNo:empNo}
         };
         return $http.get("http://api.dooioo.com:18080/route/rest?method=oms.employee.get", config).then(
             function(response) {
