@@ -20,17 +20,20 @@ app.controller('LoginController', function LoginController($scope, $http, $route
             return false;
         }
 
-        EmployeeService.login(employee.id, employee.password).then(function(data){
-            if(data.status != 'fail') {
-                console.log(data);
-                angular.forEach(data, function(value, key){
-                    this[key] = value; //this指代Employee
-                }, Employee);
-                window.sessionStorage.lastSign = new Date();
-                $location.url('/list');
-            } else {
-                alert('工号或密码错误，请重试');
-            }
-        });
+        $scope.$emit('event:loginRequest', employee.id, employee.password);
+
+//        EmployeeService.login(employee.id, employee.password).then(function(data){
+//            if(data.status != 'fail') {
+//                console.log(data);
+//                angular.forEach(data, function(value, key){
+//                    this[key] = value; //this指代Employee
+//                }, Employee);
+//                window.sessionStorage.lastSign = new Date();
+//                $location.url('/list');
+//            } else {
+//                alert('工号或密码错误，请重试');
+//            }
+//        });
+
     };
 });

@@ -18,10 +18,7 @@ app.service('CustomerService', function CustomerService($http, CONF, Employee) {
     self.privateList = function() {
 
         var config = {
-            params: {token:Employee.accessToken},
-            headers:{
-                'Authorization':'Bearer ' + Employee.accessToken
-            }
+            params: {token:Employee.accessToken}
         };
         return $http.get(CONF.host + "?method=ky.private.list", config).then(
             function(response) { //success
@@ -35,10 +32,7 @@ app.service('CustomerService', function CustomerService($http, CONF, Employee) {
 
     self.customerPhones = function(inquiryId) {
         var config = {
-            params: {inquiryId:inquiryId},
-            headers:{
-                'Authorization':'Bearer ' + Employee.accessToken
-            }
+            params: {inquiryId:inquiryId}
         };
         return $http.get(CONF.host + "?method=ky.phone.list", config).then(
             function(response) { //success
