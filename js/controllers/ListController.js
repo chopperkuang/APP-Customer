@@ -18,6 +18,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         $scope.popupCallMultiShow = 'hidden';
         $scope.popupSelectShow = 'hidden';
         $scope.iframeShow = 'hidden';
+        $scope.smsShow = '';
         //侧边栏
         $scope.sidebarShow = '';
         //todo 这类对弹层的操作，可以由指令来完成(进行封装)，因此部分弹层是互斥的
@@ -28,6 +29,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         //获取客户列表
         CustomerService.privateList().then(function(data){
             $scope.customerList = data;
+            console.log(JSON.stringify(data));
             if($scope.customerList.length == 0){//暂无客户
                 $scope.listShow = 'hidden';
                 $scope.noRecordShow = '';
@@ -48,6 +50,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         }
 
         $scope.predicate = '-lastFollowDate';
+        //先提交localStorage中LOCALlastFollowDate，成功后获取客户列表
         //获取客户列表
         CustomerService.privateList().then(function(data){
             $scope.customerList = data;
@@ -67,6 +70,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
      */
     $scope.call = function(inquiryId) { 
         if($scope.sidebarShow != ''){
+            $scope.sidebarShow = '';
             return false;
         }
         CustomerService.customerPhones(inquiryId).then(function(data){
@@ -75,11 +79,23 @@ app.controller('ListController', function ListController($scope, $http, $locatio
             if($scope.contacts.length == 0){//无联系方式
                 return false;
             }
+            
+            $scope.inquiryId = $scope.contacts[0].inquiryId;
             if($scope.contacts.length == 1 && $scope.contacts[0].phoneList.length == 1){ // 一个电话
                 $scope.phoneNumber = $scope.contacts[0].phoneList[0].phoneNumber;
+                
+                //固定电话不提供发短信接口
+                if(!app.regCellPhone.test($scope.phoneNumber)){
+                    $scope.smsShow = 'hidden';
+                }
+                else{
+                    $scope.smsShow = '';
+                }
+
                 $scope.popupCallShow = '';
             }
             else{ // 多个电话
+                
                 $scope.popupCallMultiShow = '';
             }
             $scope.iframeShow = '';
@@ -136,12 +152,43 @@ app.controller('ListController', function ListController($scope, $http, $locatio
     };
 
     /**
-     * 更新最近拨打时间
+     * 更新最近拨打时间(以客户端时间为准)
      */
-    $scope.updateLastCall = function(type){
+    $scope.updateLastFollowDate = function(type, inquiryId){
         if(type == 'tel'){
-            //alert('last time of calling is:' + new Date());
-            console.log('last time of calling is:' + new Date());
+            var lastFollowDate = new Date().getTime();
+
+            //更新页面上最近拔打时间并重新排序
+            angular.forEach($scope.customerList, function(value, key){
+                if(value.inquiryId == inquiryId){
+                    value.lastFollowDate = lastFollowDate;
+                }
+            });
+
+            //将最近拔打时间提交到后台
+            //分支1：网络不通，记入localStorage（下次从后台更新列表数据之前，先提交队列再更新）
+            if(window.localStorage.getItem('LOCALlastFollowDate')){//队列不为空
+                var arrayLastFollowDate = JSON.parse(window.localStorage.getItem('LOCALlastFollowDate'));
+                var isInQueue = false;
+                angular.forEach(arrayLastFollowDate, function(value, key){//己在队列中，覆盖
+                    if(value.inquiryId == inquiryId){
+                        value.lastFollowDate = lastFollowDate;
+                        isInQueue = true;    
+                        return false;
+                    }
+                });
+                if(!isInQueue){//不在队列中，追加
+                    arrayLastFollowDate.push({'inquiryId':inquiryId, 'lastFollowDate':lastFollowDate});
+                }
+                var strLastFollowDate = JSON.stringify(arrayLastFollowDate);
+            }
+            else{//队列空，直接添加
+                var strLastFollowDate = JSON.stringify([{'inquiryId':inquiryId, 'lastFollowDate':lastFollowDate}]);
+            }
+            window.localStorage.setItem('LOCALlastFollowDate', strLastFollowDate);
+            //分支2：网络通，则直接存入后台，并清空localStorage中LOCALlastFollowDate
+            //$http.post(xxxxx);
+            //window.localStorage.removeItem('LOCALlastFollowDate');
         }
     };
 

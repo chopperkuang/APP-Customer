@@ -6,7 +6,7 @@
  */
 
 'use strict';
-
+//window.localStorage.clear();
 var app = angular.module('customerApp', ['ngResource', 'dy.format', 'phonegap.notification']);
 app.config(function($routeProvider) {
     $routeProvider.

@@ -94,7 +94,9 @@ img {border:0}
 .header .btn_nav {background-position:0 -44px;}
 .header .btn_update {background-position:-110px -44px;float:right;}
 
+
 .listWrap {width:320px; height:416px; overflow-y:scroll; -webkit-overflow-scrolling:touch;}
+.txt_search {width:298px; font-size:18px; height:18px; line-height:20px; font-size:14px; border:1px solid #c5c4c3; margin-top:10px; padding:6px;}
 ul.main_list {width:298px;border:1px solid #c5c4c3;-webkit-border-radius:10px;box-shadow:1px 1px 2px rgba(0,0,0,0.12);margin:10px auto;}
 ul.main_list li{font-size:18px;text-align:left;border-bottom:1px solid #ddd;background:#fff;padding:5px}
 ul.main_list li:first-child{-webkit-border-top-left-radius:10px;-webkit-border-top-right-radius:10px}

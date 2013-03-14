@@ -18,27 +18,26 @@
                 </header>
 
                 <section class="listWrap">
+                    <p class="align_center"><input type="text" ng-model="search" placeholder="搜索" class="txt_search"/></p>
                     <ul class="main_list {{listShow}}">
-                        <li class="clearfix" ng-repeat="customer in customerList | orderBy:predicate" ng-click="call(customer.inquiryId)" id="{{customer.inquiryId}}">
+                        <li class="clearfix" ng-repeat="customer in customerList | orderBy:predicate | filter:search" ng-click="call(customer.inquiryId)" id="{{customer.inquiryId}}">
                             <div class="summary">
                                 <p class="custName">{{customer.custName}}</p>
 
-                                <p class="custNeed">{{customer.districtName}}<br/>800-1000万 {{ customer | formatRoom}}</p>
+                                <p class="custNeed">{{customer.districtName}}<br/>800-1000万</p>
                             </div>
                             <div class="lastCall">{{customer.lastFollowDate | fromNow: 'YYYY/MM/DD HH:mm:ss'}}</div>
                         </li>
                     </ul>
-                    <p class="noRecord {{noRecordShow}}">暂无客户。</p>
                 </section>
-
 
                 <!-- begin opration -->
 
                 <!-- single phone -->
                 <section class="popup_bottom {{popupCallShow}}">
                     <section class="align_center">
-                        <p><a href="tel:{{phoneNumber}}" class="btn_oper in_block" ng-click="updateLastCall('tel')">打电话</a></p>
-                        <p class="mt_10"><a href="sms:{{phoneNumber}}" class="btn_oper in_block">发短信</a></p>
+                        <p><a href="tel:{{phoneNumber}}" id="{{inquiryId}}" class="btn_oper in_block" ng-click="updateLastFollowDate('tel', inquiryId)">打电话</a></p>
+                        <p class="mt_10"><a href="sms:{{phoneNumber}}" class="btn_oper in_block {{smsShow}}">发短信</a></p>
                         <p class="mt_10"><input type="button" class="btn_oper" value="取消" ng-click="callCancel()" /></p>
                     </section>   
                 </section>
@@ -57,7 +56,7 @@
                         <div class="mt_10" ng-repeat="contact in contacts">
                             <p>{{contact.contactName}}：</p>
                             <p ng-repeat="phone in contact.phoneList">
-                                <a href="{{callType}}:{{phone.phoneNumber}}" class="btn_oper in_block mt_5" ng-click="updateLastCall(callType)">{{phone.phoneNumber}}</a>
+                                <a href="{{callType}}:{{phone.phoneNumber}}" class="btn_oper in_block mt_5" ng-click="updateLastFollowDate(callType, inquiryId)">{{phone.phoneNumber}}</a>
                             </p>
                         </div>
                     </section>
