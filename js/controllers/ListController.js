@@ -95,7 +95,6 @@ app.controller('ListController', function ListController($scope, $http, $locatio
                 $scope.popupCallShow = '';
             }
             else{ // 多个电话
-                
                 $scope.popupCallMultiShow = '';
             }
             $scope.iframeShow = '';
@@ -138,6 +137,12 @@ app.controller('ListController', function ListController($scope, $http, $locatio
         $scope.popupSelectShow = 'hidden';
         $scope.iframeShow = 'hidden';
     };
+
+    $scope.closePopupCalls = function(){
+        $scope.popupSelectShow = 'hidden';
+        $scope.popupCallShow = 'hidden';
+        $scope.iframeShow = 'hidden';
+    }
 
     /**
      * 展开、收缩侧边栏
@@ -190,6 +195,7 @@ app.controller('ListController', function ListController($scope, $http, $locatio
             //$http.post(xxxxx);
             //window.localStorage.removeItem('LOCALlastFollowDate');
         }
+        $scope.closePopupCalls();
     };
 
     /**

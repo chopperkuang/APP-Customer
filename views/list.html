@@ -37,7 +37,7 @@
                 <section class="popup_bottom {{popupCallShow}}">
                     <section class="align_center">
                         <p><a href="tel:{{phoneNumber}}" id="{{inquiryId}}" class="btn_oper in_block" ng-click="updateLastFollowDate('tel', inquiryId)">打电话</a></p>
-                        <p class="mt_10"><a href="sms:{{phoneNumber}}" class="btn_oper in_block {{smsShow}}">发短信</a></p>
+                        <p class="mt_10"><a href="sms:{{phoneNumber}}" class="btn_oper in_block {{smsShow}}" ng-click="closePopupCalls()">发短信</a></p>
                         <p class="mt_10"><input type="button" class="btn_oper" value="取消" ng-click="callCancel()" /></p>
                     </section>   
                 </section>
