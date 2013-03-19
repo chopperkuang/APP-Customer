@@ -65,13 +65,26 @@ app.config(function($routeProvider, $httpProvider) {
 
 app.run(function ($rootScope, $http, $location, Employee, EmployeeService, Base64, MD5) {
 
+    // register listener to watch route changes
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        if(!Employee.accessToken || !window.sessionStorage.lastSign){
+            // no logged user, we should be going to #login
+            if ( next.templateUrl == "views/login.html" ) {
+                // already going to #login, no redirect needed
+            } else {
+                // not going to #login, we should redirect now
+                $location.path( "/login" );
+            }
+        }
+    });
+
     /**
      * Holds all the requests which failed due to 401 response.
      */
     $rootScope.requests401 = [];
 
     $rootScope.$on('event:loginRequired', function () {
-        $location.url("/login");
+        $location.path("/login");
     });
 
     /**
@@ -148,7 +161,7 @@ app.run(function ($rootScope, $http, $location, Employee, EmployeeService, Base6
         window.sessionStorage.lastSign = null;
         window.sessionStorage.accessToken = null;
     });
-    //~end api interceptors
+    //~end api Interceptor
 
 
     //load phonegap

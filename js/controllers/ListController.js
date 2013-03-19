@@ -5,50 +5,42 @@
  */
 
 app.controller('ListController', function ListController($scope, $http, $location, $route, CustomerService, EmployeeService, Employee, notification) {
-    if(!Employee.accessToken || !window.sessionStorage.lastSign){
-        $scope.$emit('event:loginRequired');
-    }
-    else {
-        //显示|隐藏 状态初始化
-        //客户列表
-        $scope.noRecordShow = 'hidden';
-        $scope.listShow = 'hidden';
-        //操作弹层初始化
-        $scope.popupCallShow = 'hidden';
-        $scope.popupCallMultiShow = 'hidden';
-        $scope.popupSelectShow = 'hidden';
-        $scope.iframeShow = 'hidden';
-        $scope.smsShow = '';
-        //侧边栏
-        $scope.sidebarShow = '';
-        //todo 这类对弹层的操作，可以由指令来完成(进行封装)，因此部分弹层是互斥的
+
+    //显示|隐藏 状态初始化
+    //客户列表
+    $scope.noRecordShow = 'hidden';
+    $scope.listShow = 'hidden';
+    //操作弹层初始化
+    $scope.popupCallShow = 'hidden';
+    $scope.popupCallMultiShow = 'hidden';
+    $scope.popupSelectShow = 'hidden';
+    $scope.iframeShow = 'hidden';
+    $scope.smsShow = '';
+    //侧边栏
+    $scope.sidebarShow = '';
+    //todo 这类对弹层的操作，可以由指令来完成(进行封装)，因此部分弹层是互斥的
 
 
 
-        $scope.predicate = '-lastFollowDate';
-        //获取客户列表
-        CustomerService.privateList().then(function(data){
-            $scope.customerList = data;
-            console.log(JSON.stringify(data));
-            if($scope.customerList.length == 0){//暂无客户
-                $scope.listShow = 'hidden';
-                $scope.noRecordShow = '';
-            }
-            else{//有客户
-                $scope.noRecordShow = 'hidden';
-                $scope.listShow = '';
-            }
-        });
-    }
+    $scope.predicate = '-lastFollowDate';
+    //获取客户列表
+    CustomerService.privateList().then(function(data){
+        $scope.customerList = data;
+        console.log(JSON.stringify(data));
+        if($scope.customerList.length == 0){//暂无客户
+            $scope.listShow = 'hidden';
+            $scope.noRecordShow = '';
+        }
+        else{//有客户
+            $scope.noRecordShow = 'hidden';
+            $scope.listShow = '';
+        }
+    });
 
     /**
      * 刷新列表，更新数据
      */
     $scope.refresh = function(){
-        if(!Employee.accessToken || !window.sessionStorage.lastSign){
-            $scope.$emit('event:loginRequired');
-        }
-
         $scope.predicate = '-lastFollowDate';
         //先提交localStorage中LOCALlastFollowDate，成功后获取客户列表
         //获取客户列表
