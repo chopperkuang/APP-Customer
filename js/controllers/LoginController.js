@@ -11,6 +11,11 @@ app.controller('LoginController', function LoginController($scope, $http, $route
      * 用户登录
      */
     $scope.login = function(employee){
+        if(navigator.connection.type === Connection.NONE) {
+            alert("请连接网络～");
+            return false;
+        }
+
         if(!employee.id){
             alert('请输入工号');
             return false;
@@ -21,19 +26,5 @@ app.controller('LoginController', function LoginController($scope, $http, $route
         }
 
         $scope.$emit('event:loginRequest', employee.id, employee.password);
-
-//        EmployeeService.login(employee.id, employee.password).then(function(data){
-//            if(data.status != 'fail') {
-//                console.log(data);
-//                angular.forEach(data, function(value, key){
-//                    this[key] = value; //this指代Employee
-//                }, Employee);
-//                window.sessionStorage.lastSign = new Date();
-//                $location.url('/list');
-//            } else {
-//                alert('工号或密码错误，请重试');
-//            }
-//        });
-
     };
 });

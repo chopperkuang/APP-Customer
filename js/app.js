@@ -148,6 +148,21 @@ app.run(function ($rootScope, $http, $location, Employee, EmployeeService, Base6
         window.sessionStorage.lastSign = null;
         window.sessionStorage.accessToken = null;
     });
+    //~end api interceptors
+
+
+    //load phonegap
+    document.addEventListener('deviceready', function () {
+        console.log("Report: deviceready");
+        $rootScope.deviceready = true;
+
+        //listener phonegap event after deviceready
+        document.addEventListener('online', function () {
+            console.log("online.");
+        }, false);
+
+    }, false);
+    //~ end phonegap
 });
 
 /**
